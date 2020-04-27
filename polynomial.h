@@ -1,4 +1,5 @@
 //Polynomial 
+
 #include <cmath>
 
 #include "sequence.h"
@@ -9,21 +10,7 @@ constexpr auto InsufficientSizeListException = "One of polynomial has insufficie
 //node_dptr - node double pointer
 
 
-//Testers
-template <typename ClassType, typename ConstType>
-void inputer(ClassType& MyClass, const ConstType random) {
-    int size = MyClass.get_size();
-    for (int i = 0; i < size; ++i) MyClass[i] = ((ConstType)(i + random)) % size;
-}
 
-template <typename ClassType>
-void outputer(ClassType& MyClass) {
-    std::cout << "\n";
-    int size = MyClass.get_size();
-    for (int i = 0; i < size; ++i) std::cout << MyClass[i] << " ";
-    std::cout << "\n";
-
-}
 
 
 template <class T>
@@ -155,18 +142,18 @@ public:
     {
         if (this->size <= 1 || poly.size <= 1) throw std::logic_error(InsufficientSizeListException);
 
-        std::cout << "\nf(g), where\n";
-        std::cout << "f:";
-        this->show();
+        //std::cout << "\nf(g), where\n";
+        //std::cout << "f:";
+        //this->show();
 
-        std::cout << "g:";
-        poly.show();
+        //std::cout << "g:";
+        //poly.show();
 
 
         const int result_size = (poly.size - 1) * (this->size - 1) + 1;
         Polynomial<T> result_poly(result_size);
         Polynomial<T> temp_poly(result_size);
-        std::cout << "\n"  "RESULT SIZE: " << result_size << "\n";
+        //std::cout << "\n"  "RESULT SIZE: " << result_size << "\n";
 
         for (int i = 0; i < this->size - 1; ++i)
         {
@@ -176,8 +163,8 @@ public:
 
             temp_poly *= (*this->coefs)[this->size - i - 1];
 
-            std::cout << (*this->coefs)[this->size - i - 1] << "*g^" << this->size - i - 1 << ":" << "\n";
-            temp_poly.show();
+            //std::cout << (*this->coefs)[this->size - i - 1] << "*g^" << this->size - i - 1 << ":" << "\n";
+            //temp_poly.show();
 
             result_poly = result_poly + temp_poly;
         }
@@ -233,6 +220,11 @@ public:
         }
 
         std::cout << "\n";
+    }
+
+	T __get__(const int index) const
+    {
+        return (*this->coefs)[index];
     }
 };
 
