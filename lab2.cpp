@@ -49,7 +49,8 @@ void interface(T* idata)
         case (1):
         	
             std::cout << "Size of A: ";
-            std::cin >> size_a;
+
+            if (!(std::cin >> size_a)) { std::cout << "\nINCORRECT INPUT!\n"; system("pause"); exit(1); }
             data = new T[size_a];
 
             std::cout << "\nCoefficients of the Polynomial (from C0 to Cn)\n";
@@ -61,13 +62,16 @@ void interface(T* idata)
 
             delete[] data;
 
+            
+        	
             break;
 
 
         case (2):
 
             std::cout << "Size of B: ";
-            std::cin >> size_b;
+            if (!(std::cin >> size_b)) { std::cout << "\nINCORRECT INPUT!\n"; system("pause"); exit(1); }
+        	
             data = new T[size_b];
 
             std::cout << "\nCoefficients of the Polynomial (from C0 to Cn)\n";
@@ -82,8 +86,9 @@ void interface(T* idata)
             break;
 
         case (3):
+            std::cout << "Учти, Неполиномиальный, эти комлпексные требуют особого отношения к себе. Смотри, как нужно тебе их будет вводить: (real, imaginary). Что значат эти буквы сам, я думаю, знаешь. Введёшь неправильно, забудешь скобочку - будешь должен мне новый ПДА. Надеюсь ты меня услышал, Неполиномиальный.\n";
 
-            std::cin >> k;
+            if (!(std::cin >> k)) { std::cout << "\nINCORRECT INPUT!\n"; system("pause"); exit(1); }
 
             break;
 
@@ -110,7 +115,7 @@ void interface(T* idata)
 
             r = a.multiply(b);
             r.show();
-
+   	
             break;
 
         case (8):
@@ -119,7 +124,7 @@ void interface(T* idata)
             r = a;
             r.show();
             a *= pow(k, -1);
-
+        	
             break;
 
         case (9):
@@ -141,7 +146,7 @@ void interface(T* idata)
 
             std::cout << b.substitute(k);
 
-            break;
+			break;
 
 
         case (12):
@@ -156,14 +161,18 @@ void interface(T* idata)
             r = b.composition(a);
             r.show();
 
-            break;
+        	break;
 
         case (14):
 
             exit(1);
-
+            break;
+        	
         default:
             std::cout << "\nINCORRECT INPUT!\n";
+            system("pause");
+            exit(1);
+        	
         }
         std::cout << "\n";
     }
@@ -173,12 +182,12 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
 	
-    int TYPE;
-    const int DOUBLE = 0;
-    const int COMPLEX = 1;
+    int TYPE = 0;
+    const int DOUBLE = 1;
+    const int COMPLEX = 2;
     std::cout << "[recommended open with russian locale for the best experience]\n";
-    std::cout << "Короче, Неполиномиальный, я тебя спас и в благородство играть не буду.\nВведи тип данных, с которыми будешь работать, и мы в расчёте. Заодно посмотрим, как быстро у тебя башка после амнезии прояснится. А по твоей теме постараюсь помочь.\n";
-    std::cout << "Если будешь работать с комплексными, то вводи 1, ежели хочешь по существу, вещественые имею в виду, то вводи 0: ";
+    std::cout << "Короче, Неполиномиальный, я тебя спас и в благородство играть не буду.\nВведи тип данных, с которым будешь работать, и мы в расчёте. Заодно посмотрим, как быстро у тебя башка после амнезии прояснится. А по твоей теме постараюсь помочь.\n";
+    std::cout << "Если будешь работать с комплексными, то вводи 2, ежели хочешь по существу, вещественые имею в виду, то вводи 1: ";
     std::cin >> TYPE;
 
 	if (TYPE == COMPLEX)
