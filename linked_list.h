@@ -66,6 +66,20 @@ public:
 
         if (this == &list) return *this;
 
+        node* node_temp_ptr;
+        node* node_ptr = this->head;
+
+
+        for (int i = 0; i < this->size; ++i)
+        {
+            node_temp_ptr = node_ptr->next;
+            delete node_ptr;
+            node_ptr = node_temp_ptr;
+        }
+
+        this->head = nullptr;
+        this->size = 0;
+
         this->size = list.size;
         node** node_dptr = &this->head;
         node* node_ptr_c = list.head;
