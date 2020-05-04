@@ -1,9 +1,10 @@
 //Array sequence
 
 #include "dynamic_array.h"
+#include "sequence.h"
 
 template <class T>
-class ArraySequence : public Sequence<T>
+class ArraySequence: public Sequence<T>
 {
 private:
 
@@ -77,7 +78,7 @@ public:
         const int sub_size = end_index - start_index;
         ArraySequence<T>* subsequence = new ArraySequence<T>(sub_size);
 
-        for (int i = 0; i < sub_size; ++i) subsequence->dynamic_array[i] = this->dynamic_array[i];
+        for (int i = 0; i < sub_size; ++i) subsequence->dynamic_array[i] = this->dynamic_array[start_index + i];
 
         return subsequence;
     }
